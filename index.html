@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>美罗培南药动学计算器</title>
+</head>
+<body>
+	<h1>美罗培南ft%计算器V1.0</h1>
+	<form>
+		<label for="B15">第一次采血时间：</label>
+		<input type="number" id="B15"><br>
+
+		<label for="C15">第一次血药浓度结果：</label>
+		<input type="number" id="C15"><br>
+
+		<label for="B16">第二次采血时间：</label>
+		<input type="number" id="B16"><br>
+
+		<label for="C16">第二次血药浓度结果：</label>
+		<input type="number" id="C16"><br>
+
+		<label for="D15">MIC：</label>
+		<input type="number" id="D15"><br>
+
+		<label for="E15">输注时间：</label>
+		<input type="number" id="E15"><br>
+
+		<label for="F15">给药剂量：</label>
+		<input type="number" id="F15"><br>
+		
+		 <button type="button" onclick="calculate()">计算</button>
+
+		<p id="result"></p>
+	</form>
+
+	<script>
+		function calculate() {
+			var B15 = parseFloat(document.getElementById("B15").value);
+			var C15 = parseFloat(document.getElementById("C15").value);
+			var B16 = parseFloat(document.getElementById("B16").value);
+			var C16 = parseFloat(document.getElementById("C16").value);
+			var D15 = parseFloat(document.getElementById("D15").value);
+			var E15 = parseFloat(document.getElementById("E15").value);
+			var F15 = parseFloat(document.getElementById("F15").value);
+
+			var G15 = (Math.log(C15) - Math.log(C16)) / (B16 - B15);
+			var H15 = F15 / E15;
+			var I15 = (H15 * (1 - Math.exp(-G15 * E15)) * Math.exp(-G15 * (B15 - E15))) / (C15 * G15);
+			var K15 = G15 * I15;
+			var L15 = H15 * (1 - 0.02);
+			var O15 = (E15 - (Math.log((L15 / K15) / (L15 / K15 - D15)) * I15 / K15) + (Math.log((L15 / K15 - L15 / K15 * Math.exp(-K15 / I15 * E15)) / D15) * (I15 / K15)));
+			var fT = O15 / B16 * 100;
+
+			document.getElementById("result").innerHTML = "fT%: " + fT.toFixed(2) + "%";
+		}
+	</script>
+</body>
+</html>
