@@ -29,7 +29,20 @@
 		
 		 <button type="button" onclick="calculate()">计算</button>
 
-		<p id="result"></p>
+		<p id="result1"></p>
+
+		<label for="B22">间隔时间：</label>
+		<input type="number" id="B22"><br>
+
+		<label for="E21">输注时间：</label>
+		<input type="number" id="E21"><br>
+
+		<label for="F21">给药剂量：</label>
+		<input type="number" id="F21"><br>
+		
+		 <button type="button" onclick="calculateft()">计算</button>
+
+		<p id="result2"></p>
 	</form>
 
 	<script>
@@ -50,8 +63,35 @@
 			var O15 = (E15 - (Math.log((L15 / K15) / (L15 / K15 - D15)) * I15 / K15) + (Math.log((L15 / K15 - L15 / K15 * Math.exp(-K15 / I15 * E15)) / D15) * (I15 / K15)));
 			var fT = O15 / B16 * 100;
 
-			document.getElementById("result").innerHTML = "fT%: " + fT.toFixed(2) + "%";
+			document.getElementById("result1").innerHTML = "fT%: " + fT.toFixed(2) + "%";
+		}
+	</script>
+
+	<script>
+		function calculateft() {
+			var B15 = parseFloat(document.getElementById("B15").value);
+			var C15 = parseFloat(document.getElementById("C15").value);
+			var B16 = parseFloat(document.getElementById("B16").value);
+			var C16 = parseFloat(document.getElementById("C16").value);
+			var D15 = parseFloat(document.getElementById("D15").value);
+			var E15 = parseFloat(document.getElementById("E15").value);
+			var F15 = parseFloat(document.getElementById("F15").value);
+			var B22 = parseFloat(document.getElementById("B22").value);
+			var E21 = parseFloat(document.getElementById("E21").value);
+			var F21 = parseFloat(document.getElementById("F21").value);
+
+			var G15 = (Math.log(C15) - Math.log(C16)) / (B16 - B15);
+			var H15 = F15 / E15;
+			var H21 = F21 / E21;
+			var I15 = (H15 * (1 - Math.exp(-G15 * E15)) * Math.exp(-G15 * (B15 - E15))) / (C15 * G15);
+			var K15 = G15 * I15;
+			var L21 = H21 * (1 - 0.02);
+			var O21 = (E21 - (Math.log((L21 / K15) / (L21 / K15 - D15)) * I15 / K15) + (Math.log((L21 / K15 - L21 / K15 * Math.exp(-K15 / I15 * E21)) / D15) * (I15 / K15)));
+			var fT2 = O21 / B22 * 100;
+
+			document.getElementById("result2").innerHTML = "预计fT%: " + fT2.toFixed(2) + "%";
 		}
 	</script>
 </body>
 </html>
+
