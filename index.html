@@ -92,7 +92,7 @@
 			var L21 = H21 * (1 - 0.02);
 			var O21 = (E21 - (Math.log((L21 / K15) / (L21 / K15 - D15)) * I15 / K15) + (Math.log((L21 / K15 - L21 / K15 * Math.exp(-K15 / I15 * E21)) / D15) * (I15 / K15)));
 			var fT2 = O21 / B22 * 100;
-			var ftb = (fT > 100) ? 100 : (fT < 0) ? 0 : fT;
+			var ftb = (fT2 > 100) ? 100 : (fT2 < 0) ? 0 : fT;
 
 			document.getElementById("result2").innerHTML = "预计fT%: " + fTb.toFixed(2) + "%";
 		}
