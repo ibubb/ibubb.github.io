@@ -6,26 +6,26 @@
 <body>
 	<h1>美罗培南%ft计算器</h1>
 	<form>
-		<label >Calculate %ft(计算%ft) </p> </label> 
-		<label for="B15">Time of first blood collection:(h)(第一次采血时间：)</label>
+		<label >Calculate %ft (计算%ft) </p> </label> 
+		<label for="B15">Time of first blood collection:(h)(第一次采血时间)</label>
 		<input type="number" id="B15"><br>
 
-		<label for="C15">The first plasma concentration results:(第一次血药浓度结果：)</label>
+		<label for="C15">The first plasma concentration results:(第一次血药浓度结果)</label>
 		<input type="number" id="C15"><br>
 
-		<label for="B16">Second blood sampling time:(h)(第二次采血时间：)</label>
+		<label for="B16">Trough blood collection time:(h)(第二次采血时间)</label>
 		<input type="number" id="B16"><br>
 
-		<label for="C16">The second plasma concentration results:(第二次血药浓度结果：)</label>
+		<label for="C16">Trough concentration:(谷浓度)</label>
 		<input type="number" id="C16"><br>
 
 		<label for="D15">MIC：</label>
 		<input type="number" id="D15"><br>
 
-		<label for="E15">Infusion time:(h)(输注时间：)</label>
+		<label for="E15">Infusion time:(h)(输注时间)</label>
 		<input type="number" id="E15"><br>
 
-		<label for="F15">Dosage:(mg)(给药剂量：)</label>
+		<label for="F15">Dosage:(mg)(给药剂量)</label>
 		<input type="number" id="F15"><br>
 		
 		 <button type="button" onclick="calculate()">calculate(计算)</button>
@@ -65,8 +65,9 @@
 			var L15 = H15 * (1 - 0.02);
 			var O15 = (E15 - (Math.log((L15 / K15) / (L15 / K15 - D15)) * I15 / K15) + (Math.log((L15 / K15 - L15 / K15 * Math.exp(-K15 / I15 * E15)) / D15) * (I15 / K15)));
 			var fT = O15 / B16 * 100;
+			var fta = (fT > 100) ? 100 : (fT < 0) ? 0 : fT;
 
-			document.getElementById("result1").innerHTML = "fT%: " + fT.toFixed(2) + "%";
+			document.getElementById("result1").innerHTML = "fT%: " + fta.toFixed(2) + "%";
 		}
 	</script>
 
@@ -91,8 +92,9 @@
 			var L21 = H21 * (1 - 0.02);
 			var O21 = (E21 - (Math.log((L21 / K15) / (L21 / K15 - D15)) * I15 / K15) + (Math.log((L21 / K15 - L21 / K15 * Math.exp(-K15 / I15 * E21)) / D15) * (I15 / K15)));
 			var fT2 = O21 / B22 * 100;
+			var ftb = (fT > 100) ? 100 : (fT < 0) ? 0 : fT;
 
-			document.getElementById("result2").innerHTML = "预计fT%: " + fT2.toFixed(2) + "%";
+			document.getElementById("result2").innerHTML = "预计fT%: " + fTb.toFixed(2) + "%";
 		}
 	</script>
 </body>
